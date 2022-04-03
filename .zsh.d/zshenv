@@ -1,0 +1,75 @@
+# setting path
+## don't save repeated path
+typeset -U path
+
+if [ "${path_is_set:-no}" = "yes" ]; then
+    base_path=($path)
+else
+    base_path=()
+fi
+
+export path_is_set=yes
+path=(
+      $base_path
+      # system
+      /bin(N-/)
+      # local
+      $HOME/local/bin(N-/)
+      # rbenv
+      $HOME/.rbenv/bin(N-/)
+      $HOME/.gem/ruby/*/bin(N-/)
+      # pyenv
+      $HOME/.pyenv/bin(N-/)
+      # Debian GNU/Linux
+      /var/lib/gems/*/bin(N-/)
+      # system
+      /usr/local/bin(N-/)
+      /usr/bin(N-/)
+      /usr/games(N-/))
+
+## set sudo path
+typeset -xT SUDO_PATH sudo_path
+typeset -U sudo_path
+sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
+
+if [ $(id -u) -eq 0 ]; then
+    path=($sudo_path $path)
+else
+    :
+fi
+
+# setting path for manual
+## don't save repeated path
+typeset -U manpath
+
+manpath=(
+         $HOME/local/share/man(N-/)
+         # system
+         /usr/local/share/man(N-/)
+         /usr/share/man(N-/))
+
+# Ruby
+typeset -xT RUBYLIB ruby_path
+typeset -U ruby_path
+## set path
+ruby_path=(
+	./lib)
+
+# Python
+typeset -xT PYTHONPATH pyhon_path
+typeset -U python_path
+python_path=(
+	./lib)
+
+# Less
+export LESS="-R"
+
+# Editor
+export EDITOR=vim
+
+if ! type vim > /dev/null 2>&1; then
+    alias vim=vi
+fi
+
+# VTE seting 
+[ -f /etc/profile.d/vte.sh ] && . /etc/profile.d/vte.sh

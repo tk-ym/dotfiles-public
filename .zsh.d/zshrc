@@ -1,0 +1,105 @@
+# Emacs key bind
+bindkey -e
+
+## starship
+eval "$(starship init zsh)"
+
+## anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+
+## pyenv
+export PYENV_ROOT="$HOME/.anyenv/envs/pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+
+## nodenv
+
+## poetry
+export PATH="$HOME/.poetry/bin:$PATH"
+
+
+# Change directory setting
+## Even if it moves with cd, it adds it to the directory stack like pushd.
+setopt auto_pushd
+## Search for a destination directory list.
+cdpath=(~)
+## when changing the directory, it show directory stack.
+chpwd_functions=($chpwd_functions dirs)
+
+# History
+## Save file for history
+HISTFILE=~/.zsh_history
+## Size of history on memory.
+HISTSIZE=10000000
+SAVEHIST=$HISTSIZE
+## save history option.
+setopt extended_history
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt inc_append_history
+setopt share_history
+setopt no_flow_control
+
+# prompt
+## set prompt option
+setopt prompt_subst
+setopt prompt_percent
+setopt transient_rprompt
+autoload -Uz vcs_info
+
+## set color
+color256()
+{
+    local red=$1; shift
+    local green=$2; shift
+    local blue=$3; shift
+
+    echo -n $[$red * 36 + $green * 6 + $blue + 16]
+}
+fg256()
+{
+    echo -n $'\e[38;5;'$(color256 "$@")"m"
+}
+bg256()
+{
+    echo -n $'\e[48;5;'$(color256 "$@")"m"
+}
+
+# completions
+autoload -Uz compinit && compinit
+
+# alias
+## ls and ps
+case $(uname) in
+    *BSD|Darwin)
+        if [ -x "$(which gnuls)" ]; then
+            alias ls="gnuls"
+            alias la="ls -lhAF --color=auto"
+        else
+            alias la="ls -lhAFG"
+        fi
+        alias ps="ps -fU$(whoami)"
+        ;;
+    SunOS)
+        if [ -x "`which gls`" ]; then
+            alias ls="gls"
+            alias la="ls -lhAF --color=auto"
+        else
+            alias la="ls -lhAF"
+        fi
+        alias ps="ps -fl -u$(/usr/xpg4/bin/id -un)"
+        ;;
+    *)
+        alias la="ls -lhAF --color=auto"
+        alias ps="ps -fU$(whoami) --forest"
+        ;;
+esac
+
+## ls
+export LSCOLORS=gxfxcxdxbxegedabagacad
+alias ls='ls -G'
+alias ll='ls -lG'
+alias la='ls -lasG'
+
