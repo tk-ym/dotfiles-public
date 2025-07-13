@@ -23,6 +23,7 @@
 
 ;; Coding
 (straight-use-package 'yasnippet)
+(straight-use-package 'obsidian)
 
 ;; File
 (straight-use-package 'recentf-ext)

@@ -19,7 +19,7 @@
 ;; 常時起動モード
 ;;--------------------------------------------------------------------------------
 (global-auto-revert-mode t) ;変更時自動再読み込み
-(global-linum-mode t)   ; 行番号表示
+(global-display-line-numbers-mode t)   ; 行番号表示
 (global-hi-lock-mode t) ; Hi Lock
 (set-language-environment 'Japanese) ; 言語を日本語にする
 (prefer-coding-system 'utf-8) ; 極力UTF-8とする
@@ -32,9 +32,9 @@
 ;; 設定
 ;;----------------------------------------------------------------
 ;; 行番号を表示
-(set-face-attribute 'linum nil
-                   :foreground "#800"
-                   :height 0.8)
+(set-face-attribute 'line-number nil
+                  :foreground "#800"
+                  :height 0.8)
 
 ;; 列番号を表示
 (column-number-mode 1)
@@ -146,11 +146,11 @@
                (message "Quit")
                (throw 'end-flag t)))))))
 
-;;--------------------------------------------------------------------------------
-;;
-;;--------------------------------------------------------------------------------
-;; linum-mode をいじって Emacs を高速化
-(setq linum-delay t)
-(defadvice linum-schedule (around my-linum-schedule () activate)
-  (run-with-idle-timer 0.2 nil #'linum-update-current))
+;; ;;--------------------------------------------------------------------------------
+;; ;;
+;; ;;--------------------------------------------------------------------------------
+;; ;; linum-mode をいじって Emacs を高速化
+;; (setq linum-delay t)
+;; (defadvice linum-schedule (around my-linum-schedule () activate)
+;;   (run-with-idle-timer 0.2 nil #'linum-update-current))
 

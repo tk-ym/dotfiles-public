@@ -20,6 +20,7 @@
 (when (require 'counsel nil t)
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-b") 'counsel-ibuffer)
+  (global-set-key (kbd "M-y") 'counsel-yank-pop)
 
   (counsel-mode 1))
 
@@ -31,10 +32,10 @@
 ;;   (global-set-key (kbd "M-s M-s") 'swiper-thing-at-point))
 
 
-;; (when (require 'ivy-dired-history nil t)
-;;   (define-key dired-mode-map "," 'dired)
-;;   (with-eval-after-load "session"
-;;     (add-to-list 'session-globals-include 'ivy-dired-history-variable)))
+(when (require 'ivy-dired-history nil t)
+  (define-key dired-mode-map "," 'dired)
+  (with-eval-after-load "session"
+    (add-to-list 'session-globals-include 'ivy-dired-history-variable)))
 
 ;; ;; all-the-icons-ivy
 ;; (with-eval-after-load "ivy"

@@ -1,4 +1,4 @@
-(require 'org-install)
+;; (require 'org-install)
 (require 'org-agenda)
 
 ;; 拡張子がorgのファイルを開いた時，自動的にorg-modeにする
