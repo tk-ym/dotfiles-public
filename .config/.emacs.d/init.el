@@ -24,6 +24,7 @@
 ;; Coding
 (straight-use-package 'yasnippet)
 (straight-use-package 'obsidian)
+(straight-use-package 'diff-hl)
 
 ;; File
 (straight-use-package 'recentf-ext)

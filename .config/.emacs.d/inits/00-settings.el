@@ -28,6 +28,10 @@
 (display-time)
 ;; (set-frame-parameter nil 'fullscreen 'maximized) ; 起動時にウィンドウを最大化する
 
+;; diff-hlの設定を追加
+(global-diff-hl-mode t)
+(global-diff-hl-show-hunk-mouse-mode t)
+
 ;;-----------------------------------------------------------------
 ;; 設定
 ;;----------------------------------------------------------------
