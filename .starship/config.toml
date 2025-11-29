@@ -17,13 +17,10 @@ $git_state\
 $git_status\
 $git_metrics\
 [ ](fg:white)\
-$fill\
-[ ](fg:white)\
-[](fg:#9ece6a)\
 $python\
 $nodejs\
-[](fg:#9ece6a)\
-\n$character\
+[ ](fg:white)
+$character\
 """
 
 right_format = """
@@ -43,7 +40,7 @@ Ubuntu = " " #Ubuntuのicon
 
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style)"
-style = 'fg:#7aa2f7'
+style = 'cyan bold'
 read_only = " 󰌾" #鍵のicon
 read_only_style = 'fg:#f7768e bg:#1a1b26'
 truncation_length = 3
@@ -81,20 +78,16 @@ deleted_style = 'fg:red'
 format = '[+$added]($added_style)[/](fg:#7aa2f7)[-$deleted]($deleted_style)'
 disabled = false
 
-[fill]
-symbol = '─'
-style = 'blue'
-
 [python]
-format = '[ ${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
+format = 'via [${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
 symbol = ' ' # nf-dev-python
-style = 'fg:#1a1b26 bg:#9ece6a'
+style = 'fg:green'
 pyenv_version_name = true
 
 [nodejs]
-format = '[ ${symbol}(${version})]($style)'
+format = 'via [${symbol}(${version})]($style)'
 symbol = ' '
-style = 'fg:#1a1b26 bg:#9ece6a'
+style = 'fg:green'
 
 [direnv]
 format = '[$symbol$allowed]($style) '
