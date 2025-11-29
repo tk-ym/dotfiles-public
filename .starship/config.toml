@@ -9,17 +9,17 @@ add_newline = true
 format = """
 [](fg:#7aa2f7)\
 $os\
-[ ](fg:#7aa2f7 bg:#1a1b26)\
+[ ](fg:#7aa2f7)\
 $direnv\
 $directory\
 $git_branch\
 $git_state\
 $git_status\
 $git_metrics\
-[](fg:#1a1b26)\
+[ ](fg:white)\
 $fill\
-[](fg:#1a1b26)\
-[](fg:#9ece6a bg:#1a1b26)\
+[ ](fg:white)\
+[](fg:#9ece6a)\
 $python\
 [](fg:#9ece6a)\
 \n$character\
@@ -41,17 +41,17 @@ Ubuntu = " " #Ubuntuのicon
 
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style)"
-style = 'fg:#7aa2f7 bg:#1a1b26'
+style = 'fg:#7aa2f7'
 read_only = " 󰌾" #鍵のicon
 read_only_style = 'fg:#f7768e bg:#1a1b26'
-truncation_length = 4
+truncation_length = 3
 truncation_symbol = "…/"
 truncate_to_repo = false
 
 [git_branch]
-format = '[  $symbol$branch(:$remote_branch)]($style)' # nf-pl-left_soft_divider
-style = 'fg:#7aa2f7 bg:#1a1b26'
-symbol = '  ' # nf-fa-github_alt, nf-fa-code_fork
+format = '[$symbol$branch(:$remote_branch) ]($style)' # nf-pl-left_soft_divider
+style = 'fg:purple'
+symbol = '   ' # nf-fa-github_alt, nf-fa-code_fork
 truncation_length = 4
 truncation_symbol = ''
 
@@ -60,7 +60,7 @@ format = '[\($state( $progress_current of $progress_total)\)]($style) '
 cherry_pick = '[🍒 PICKING](bold red)'
 
 [git_status]
-style = 'fg:#e0af68 bg:#1a1b26'
+style = 'fg:#e0af68'
 conflicted = '='
 ahead = '⇡${count}'
 behind = '⇣${count}'
@@ -71,12 +71,12 @@ stashed = '$'
 modified = '!${count}'
 renamed = '»'
 deleted = '✘'
-format = '([\[$all_status$ahead_behind\]]($style))'
+format = '([\[$all_status$ahead_behind\] ]($style))'
 
 [git_metrics]
-added_style = 'fg:#9ece6a bg:#1a1b26'
-deleted_style = 'fg:red bg:#1a1b26'
-format = '[+$added]($added_style)[/](fg:#7aa2f7 bg:#1a1b26)[-$deleted]($deleted_style)'
+added_style = 'fg:#9ece6a'
+deleted_style = 'fg:red'
+format = '[+$added]($added_style)[/](fg:#7aa2f7)[-$deleted]($deleted_style)'
 disabled = false
 
 [fill]
