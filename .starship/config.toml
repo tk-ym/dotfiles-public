@@ -1,33 +1,112 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 add_newline = true
 
-[aws]
-disabled = true
-
-[character]
-format = "❯❯ "
-success_symbol = "❯❯(bold green) "
-error_symbol = "❯❯(bold red) "
-
-[directory]
-format = "[$path]($style)[$read_only]($read_only_style) "
-truncation_length = 4
-truncate_to_repo = false
-truncation_symbol = "…/"
-
-# [git_status]
+# # Disable the package module, hiding it from the prompt completely
+# [package]
 # disabled = true
 
-[hostname]
-disabled = true
+format = """
+[](fg:#7aa2f7)\
+$os\
+[ ](fg:#7aa2f7 bg:#1a1b26)\
+$direnv\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$git_metrics\
+[](fg:#1a1b26)\
+$fill\
+[](fg:#1a1b26)\
+[](fg:#9ece6a bg:#1a1b26)\
+$python\
+[](fg:#9ece6a)\
+\n$character\
+"""
 
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled = true
+right_format = """
+$cmd_duration
+$time
+"""
 
-# [time]
-# disabled = false
-# time_format = "%Y-%m-%d %H:%M"
-# utc_time_offset = "+9"
+[os]
+format = "[$symbol]($style)"
+style = 'fg:#1a1b26 bg:#7aa2f7'
+disabled = false
 
-[username]
-disabled = true
+[os.symbols]
+Macos = " " #リンゴのicon
+Ubuntu = " " #Ubuntuのicon
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style)"
+style = 'fg:#7aa2f7 bg:#1a1b26'
+read_only = " 󰌾" #鍵のicon
+read_only_style = 'fg:#f7768e bg:#1a1b26'
+truncation_length = 4
+truncation_symbol = "…/"
+truncate_to_repo = false
+
+[git_branch]
+format = '[  $symbol$branch(:$remote_branch)]($style)' # nf-pl-left_soft_divider
+style = 'fg:#7aa2f7 bg:#1a1b26'
+symbol = '  ' # nf-fa-github_alt, nf-fa-code_fork
+truncation_length = 4
+truncation_symbol = ''
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = '[🍒 PICKING](bold red)'
+
+[git_status]
+style = 'fg:#e0af68 bg:#1a1b26'
+conflicted = '='
+ahead = '⇡${count}'
+behind = '⇣${count}'
+diverged = '⇕'
+up_to_date = '✓'
+untracked = '?'
+stashed = '$'
+modified = '!${count}'
+renamed = '»'
+deleted = '✘'
+format = '([\[$all_status$ahead_behind\]]($style))'
+
+[git_metrics]
+added_style = 'fg:#9ece6a bg:#1a1b26'
+deleted_style = 'fg:red bg:#1a1b26'
+format = '[+$added]($added_style)[/](fg:#7aa2f7 bg:#1a1b26)[-$deleted]($deleted_style)'
+disabled = false
+
+[fill]
+symbol = '─'
+style = 'blue'
+
+[python]
+format = '[ ${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
+symbol = ' ' # nf-dev-python
+style = 'fg:#1a1b26 bg:#9ece6a'
+pyenv_version_name = true
+
+[direnv]
+format = '[$symbol$allowed]($style) '
+style = "bold fg:#1a1b26 bg:#cba6f7"
+disabled = false
+
+[character]
+success_symbol = "[❯❯](bold green)"
+error_symbol = "[❯❯](bold red)"
+
+# right_format
+[cmd_duration]
+min_time = 1
+style = 'fg:#e0af68'
+format = "[   $duration]($style) " # nf-pl-right_soft_divider, nf-mdi-clock
+
+[time]
+disabled = false
+style = 'fg:#73daca'
+format = '[   $time]($style)' # nf-pl-right_soft_divider, nf-fa-clock_o
+time_format = "%Y-%m-%d %H:%M"
+utc_time_offset = "+9"
