@@ -21,6 +21,7 @@ $fill\
 [ ](fg:white)\
 [](fg:#9ece6a)\
 $python\
+$nodejs\
 [](fg:#9ece6a)\
 \n$character\
 """
@@ -89,6 +90,11 @@ format = '[ ${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)'
 symbol = ' ' # nf-dev-python
 style = 'fg:#1a1b26 bg:#9ece6a'
 pyenv_version_name = true
+
+[nodejs]
+format = '[ ${symbol}(${version})]($style)'
+symbol = ' '
+style = 'fg:#1a1b26 bg:#9ece6a'
 
 [direnv]
 format = '[$symbol$allowed]($style) '
