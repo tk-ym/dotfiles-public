@@ -4,6 +4,8 @@ bindkey -e
 ## starship
 eval "$(starship init zsh)"
 
+eval "$(sheldon source)"
+
 ## anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
